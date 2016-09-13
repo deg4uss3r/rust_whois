@@ -10,8 +10,8 @@ fn who_is_domain(domain: &String) -> String {
     let mut b: &[u8] = domain.as_bytes();
     let new_return: &[u8] = "\r\n".as_bytes();
     let mut whois_final = String::new();
-
-    let mut stream = TcpStream::connect("192.0.47.59:43").unwrap();  //this returns what whois server to query based on tld (COM, ORG, EDU, etc)
+    let whois_top_level = "whois.iana.org:43";
+    let mut stream = TcpStream::connect(&whois_top_level).unwrap();  //this returns what whois server to query based on tld (COM, ORG, EDU, etc)
 
     let test = stream.write(b);
     let nr = stream.write(new_return);
